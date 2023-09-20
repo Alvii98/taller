@@ -1,0 +1,28 @@
+<div class="scroll mb-3">
+    <table class="table table-bordered text-body">
+        <thead align="center">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre taller</th>
+                <th>Fecha de entrega</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Restante</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach from=$ENTRADAS key=key item=item}
+            <tr onclick="editar_entrada({$item.id})">
+                <td>{$item.id}</td>
+                <td>{$item.nombre_taller}</td>
+                <td>{date("d/m/Y", strtotime($item.fecha_entrega))}</td>
+                <td>{$item.producto}</td>
+                <td>{$item.cantidad}</td>
+                <td>{$item.restante}</td>
+                <td>{$item.valor}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>

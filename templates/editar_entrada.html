@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar</title>
+	<link rel="icon" href="img/logo.png" type="image/x-icon">
+    <!-- BOOTSTRAP 4.6 -->
+    <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- JQUERY -->
+    <script src="libs/jquery-3.5.1.min.js"></script>
+    <!-- ALERTIFY -->
+	<link rel="stylesheet" href="libs/alertifyjs/css/alertify.min.css" />
+	<link rel="stylesheet" href="libs/alertifyjs/css/themes/default.min.css" />
+	<script src="libs/alertifyjs/alertify.min.js"></script>
+	<script src="libs/alertifyjs/settings.js"></script>
+    <!-- JS PARA guardar_datos -->
+    <script src="js/ajax_guardar_datos.js?{$NO_CACHE}"></script> 
+    <script src="js/ajax_editar_datos.js?{$NO_CACHE}"></script> 
+    <!-- ESTILOS PARA LOGIN -->
+    <link rel="stylesheet" href="css/estilo.css?{$NO_CACHE}">
+    <link rel="stylesheet" href="css/camara.css?{$NO_CACHE}">
+</head>
+<body>
+    {$HEADER}
+    <div class="container border border-color rounded mb-5 mt-4 text-body">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <div class="form-group float-left">
+                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center mb-5">
+                <div class="h3" id="entrada_taller"><u>EDITAR ENTRADA A FABRICA</u></div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 float-left">
+                    <div class="form-check">
+                        <input  class="form-check-input" role="button" type="checkbox" id="para_entregar">
+                        <label class="form-check-label">Listo para entregar</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4 float-left">
+                    <div class="form-check">
+                        <input checked class="form-check-input" role="button" type="checkbox" id="entregas_anteriores">
+                        <label class="form-check-label">Vienen de entregas anteriores</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4 float-left">
+                    <div class="form-check">
+                        <input  class="form-check-input" role="button" type="checkbox" id="nuevos_completos">
+                        <label class="form-check-label">Nuevos y se completó entrega</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 float-left">
+                    <label for="exampleFormControlInput1">Nombre de taller</label>
+                    <input type="text" id="nombre_taller" class="form-control" value="{$NOMBRE_TALLER}">
+                    <input type="hidden" id="id_entrada" value="{$ID}">
+                </div>
+                <div class="form-group col-md-4 float-left">
+                    <label for="exampleFormControlInput1" id="nombre_fecha">Fecha de entrega</label>
+                    <input type="date" name="fecha" id="fecha" class="form-control" value="{$FECHA_ENTREGA}">
+                </div>
+                <div class="form-group col-md-4 float-left">
+                    <label for="exampleFormControlInput1">Producto</label>
+                    <input type="text" id="producto" class="form-control" value="{$PRODUCTO}">
+                </div>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-group col-md-4 float-left">
+                    <label for="exampleFormControlInput1">Cantidad</label>
+                    <input type="number" id="cantidad" class="form-control" value="{$CANTIDAD}">
+                </div>
+                <div class="form-group col-md-4 float-left" id="div_enviado" style="display:none !important;">
+                    <label for="exampleFormControlInput1">Enviado</label>
+                    <input type="number" id="enviado" class="form-control">
+                </div>
+                <div class="form-group col-md-4 float-left">
+                    <label for="exampleFormControlInput1">Valor</label>
+                    <input type="text" id="valor" class="form-control" value="{$VALOR}">
+                </div>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center" id="div_observacion" style="display:none !important;">
+                <div class="form-group col-md-8 float-left">
+                    <label>Observacion</label>
+                    <textarea class="form-control" id="observacion"></textarea>        
+                </div>
+            </div>
+            <div class="col-md-12 mb-4 mt-3">
+                <div class="form-group col-md-12">
+                    <button class="btn btn-dark btn-lg rounded-pill float-right ml-2" onclick="editar_entrada()" id="guardar_datos">Guardar datos</button>
+                    <button class="btn btn-dark btn-lg rounded-pill float-right ml-2" onclick="eliminar_entrada({$ID})"  id="eliminar_entrada">Eliminar entrada</button>
+                    <button class="btn btn-danger btn-lg rounded-pill float-right ml-2" id="cancelar" style="display:none;" onclick="location.reload()">Cancelar</button>
+                    {if $PREPARAR_SALIDA }
+                        <button class="btn btn-dark btn-lg rounded-pill float-right" id="preparar_salida">Preparar salida</button>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+    {$FOOTER}
+</body>
+</html>
